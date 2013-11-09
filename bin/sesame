@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+JETTY_RUNNER=dist/jetty-runner-8.1.9.v20130131.jar
+DAEMON="sesame"
+START_CMD="java -jar $JETTY_RUNNER \
+    --log log/sesame-request.log \
+    --out log/sesame-out.log \
+    --port 9999 \
+    --path openrdf-sesame dist/openrdf-sesame.war \
+    --path openrdf-workbench dist/openrdf-workbench.war"
+
+source 'bin/daemon-functions.sh'
+
+
+cmd=$1
+case $cmd in
+    "start")
+        start_command
+        ;;
+    "restart")
+        $0 stop
+        $0 start
+        ;;
+    "echo")
+        echo_daemon
+        ;;
+    "stop")
+        stop_command -2
+        ;;
+esac

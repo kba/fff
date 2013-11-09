@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+JETTY_RUNNER=dist/jetty-runner-8.1.9.v20130131.jar
+DAEMON="fff-ws"
+START_COMMAND="mvn -o jetty:run"
+
+source 'bin/daemon-functions.sh'
+
+cmd=$1
+case $cmd in
+    "start")
+        start_command $START_COMMAND
+        ;;
+    "restart")
+        $0 stop
+        $0 start
+        ;;
+    "start-war")
+        start_command "mvn war:war && \
+        java -jar $JETTY_RUNNER \
+            --log log/fff-ws-request.log \
+            --out log/fff-ws-out.log \
+            --port 8080 \
+            --path /rest target/fff-ws-0.0.1-SNAPSHOT.war"
+        ;;
+    "stop")
+        stop_command -9
+        ;;
+esac

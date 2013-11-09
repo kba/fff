@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cmd=$1
+
+
+case $cmd in
+    "start")
+        ./bin/sesame start
+        ./bin/mongod start
+        ./bin/fff-wsd start
+        ;;
+    "stop")
+        ./bin/sesame stop
+        ./bin/mongod stop
+        ./bin/fff-wsd stop
+        ;;
+    "restart")
+        $0 stop
+        $0 start
+        ;;
+esac

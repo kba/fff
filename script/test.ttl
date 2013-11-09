@@ -1,0 +1,13 @@
+@prefix ns1: <http://www.w3.org/2011/content#> .
+@prefix ns2: <http://www.w3.org/ns/oa#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] a ns2:Annotation ;
+    ns2:hasBody [ a ns1:ContentAsText,
+                ns2:Tag ;
+            ns1:chars "bla"^^xsd:string ] ;
+    ns2:hasTarget <urn:x-fff:dataobject:pdVczxMLtF> ;
+    ns2:motivatedBy ns2:tagging .

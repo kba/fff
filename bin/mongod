@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+DAEMON='mongod'
+START_CMD="mongod --dbpath dist/mongo"
+
+source 'bin/daemon-functions.sh'
+
+cmd=$1
+case $cmd in
+    "start")
+        start_command
+        ;;
+    "restart")
+        $0 stop
+        $0 start
+        ;;
+    "stop")
+        stop_command -2
+        ;;
+esac
